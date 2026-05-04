@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starian - MCP Test Frontend</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <div class="background-elements">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">✦</div>
+                <h1>Starian <span class="badge">TEST_ENV</span></h1>
+            </div>
+            <p>Squad 07 - Analisador de Merge Requests MCP</p>
+        </header>
+
+        <main>
+            <div class="glass-card form-section">
+                <h2>Nova Análise</h2>
+                <form id="analyze-form">
+                    <div class="input-group">
+                        <label for="project_id">Project ID</label>
+                        <input type="number" id="project_id" value="1" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="mr_external_id">MR External ID</label>
+                        <input type="number" id="mr_external_id" value="42" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="author_name">Author Name</label>
+                        <input type="text" id="author_name" value="dev-teste" required>
+                    </div>
+
+                    <div class="input-group full-width">
+                        <label for="diff_content">Diff Content</label>
+                        <textarea id="diff_content" rows="8" required
+                            placeholder="Cole o diff completo do Merge Request aqui..."></textarea>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="glow-btn">
+                        <span>Analisar Diff</span>
+                        <div class="btn-loader"></div>
+                    </button>
+                </form>
+            </div>
+
+            <div class="glass-card result-section" id="result-card" style="display: none;">
+                <h2>Resultado da Análise</h2>
+
+                <div class="score-container">
+                    <div class="score-ring" id="score-ring">
+                        <svg viewBox="0 0 36 36" class="circular-chart">
+                            <path class="circle-bg" d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path class="circle" id="score-circle" stroke-dasharray="0, 100" d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        </svg>
+                        <div class="score-text" id="score-value">--</div>
+                    </div>
+                    <div class="score-status">
+                        <h3 id="score-label">Aguardando</h3>
+                        <p id="critical-alert" class="alert-badge" style="display: none;">🚨 ALERTA CRÍTICO</p>
+                    </div>
+                </div>
+
+                <div class="feedback-container">
+                    <h3>Feedback Técnico</h3>
+                    <div class="markdown-body" id="feedback-content">
+                        Nenhuma análise realizada ainda.
+                    </div>
+                </div>
+
+                <div class="meta-data" id="meta-data"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="/static/script.js"></script>
+</body>
+
+</html>

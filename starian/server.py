@@ -45,7 +45,7 @@ django.setup()
 
 # Imports pos-bootstrap ------------------------------------------------
 from langchain_core.prompts import ChatPromptTemplate  # noqa: E402
-from langchain_openai import ChatOpenAI  # noqa: E402
+from langchain_google_genai import ChatGoogleGenerativeAI  # noqa: E402
 from mcp.server.fastmcp import FastMCP  # noqa: E402
 
 from starian.mcp_db_service import (  # noqa: E402
@@ -117,13 +117,13 @@ _analysis_prompt = ChatPromptTemplate.from_messages([
 ])
 
 
-def _build_llm() -> ChatOpenAI:
-    """Instancia o ChatModel da OpenAI.
+def _build_llm() -> ChatGoogleGenerativeAI:
+    """Instancia o ChatModel do Google Gemini.
 
-    Le ``OPENAI_API_KEY`` e opcionalmente ``OPENAI_MODEL`` do ambiente.
+    Le ``GOOGLE_API_KEY`` e opcionalmente ``GEMINI_MODEL`` do ambiente.
     """
-    return ChatOpenAI(
-        model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
+    return ChatGoogleGenerativeAI(
+        model=os.getenv("GEMINI_MODEL", "gemini-1.5-flash"),
         temperature=0,
         max_tokens=1024,
     )
